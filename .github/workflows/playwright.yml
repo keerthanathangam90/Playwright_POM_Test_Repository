@@ -4,6 +4,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch: # It allows manual runs from the GitHub actions tab
 
 # 1. ADD THIS PERMISSION SECTION (CRITICAL)
 # This allows the runner to create and write to the gh-pages branch
