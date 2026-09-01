@@ -4,6 +4,12 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
+# 1. ADD THIS PERMISSION SECTION (CRITICAL)
+# This allows the runner to create and write to the gh-pages branch
+permissions:
+  contents: write
+
 jobs:
   test:
     timeout-minutes: 60
@@ -25,3 +31,10 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - name: Deploy Report to GitHub Pages
+      if: ${{ !cancelled() }}
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: playwright-report
+        branch: gh-pages
